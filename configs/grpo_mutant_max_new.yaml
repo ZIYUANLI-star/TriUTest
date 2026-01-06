@@ -1,0 +1,51 @@
+# 训练/采样更偏探索，避免塌缩在“回归小样例”
+policy_model: "runs/gkd-qwen3b"
+ref_model: "runs/gkd-qwen3b"
+output_dir: "runs/grpo-mutant"
+
+rollout:
+  group_size: 6           # ↑ 提高组内多样性
+  temperature: 0.85        # ↑
+  top_p: 0.92             # ↑
+  max_new_tokens: 1024
+  gen_batch_size: 1
+  # no_repeat_ngram_size: 3        # ← 先注释掉，避免抑制模板段复用
+  # repetition_penalty: 1.15       # ← 先注释掉
+
+reward:
+  weights:
+    mutant_kill: 1.5      # ↑ 强化“杀伤”目标
+    speed: 0.1
+    stability: 0.2
+    robustness: 0.3
+    assertion: 0.1        # ← 新增：断言丰富度的小权重
+    _mutant_gamma: 1.7    # ← 新增：非线性放大 γ
+    _max_mutants: 16      # ← 新增：每次评测的 mutant 上限
+    _penalty_syntax: -1.0     # ← GateA 不通过的惩罚
+    _penalty_baseline: -0.5   # ← GateB 不通过的惩罚
+  time_budget_s: 25
+  repeat_runs: 2
+  invariance_aug: true
+
+kl:
+  beta: 0.005            # ↓ 降低 KL 强度，给策略更多探索空间
+
+gkd_online:
+  enable: false
+  jsd_alpha: 0.9
+  lambda: 0.2
+
+training:
+  device: "cuda:0"
+  use_4bit: true
+  steps: 1500
+  micro_batch_size: 1
+  grad_acc_steps: 8
+  lr: 1e-5
+  bf16: true
+
+debug:
+  print_candidates: false  # ← 你说不再需要控制台候选
+  print_rewards:   false
+  dump_jsonl:      true    # 建议保留到文件方便事后分析
+  print_every:     1

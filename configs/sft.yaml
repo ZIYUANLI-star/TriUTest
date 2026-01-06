@@ -1,0 +1,21 @@
+base_model: "Qwen/Qwen2.5-3B-Instruct" # 作为学生基座加载3B模型
+output_dir: "runs/sft-qwen3b" # 训练产物（LoRA 权重、tokenizer 等）保存到这里；下一阶段 GKD 的 base_model 就指向它。
+train_file: "data/your_dataset.json" # SFT 的训练数据（你给的 JSON，含 prompt 和 chosen/response）。
+add_domain_expansion: true # 开启后会把data/domain_expansion/*.jsonl 里的样本并入训练集
+domain_mix_ratio: 0.2
+lora:
+  r: 64 # LoRA 的秩（瓶颈维），越大容量越强，但显存略涨。32/64 常用。
+  alpha: 128 # 缩放系数
+  dropout: 0.05 # 防过拟合。
+  target_modules: ["q_proj","k_proj","v_proj","o_proj","gate_proj","up_proj","down_proj"]
+training:
+  micro_batch_size: 2 # 每卡每步的样本数（显存相关）
+  grad_acc_steps: 16 # 梯度累积 16 步 → 等效批量 = 2×16=32 个样本/更新
+  epochs: 3 #数据遍历 2 轮。SFT 阶段通常 1–3 即可。
+  lr: 2e-4 # LoRA层学习率
+  warmup_ratio: 0.03 # 前 3% 步数线性 warmup，抑制起步发散。
+  max_len: 2048
+  max_new_tokens: 512 # 在 SFT 训练脚本中并未使用（它是推理/评测用的生成上限）。保留无害。
+  bf16: true #A100 原生 bfloat16，吞吐稳。
+  use_4bit: true # 4-bit 量化加载（bitsandbytes）+ LoRA 训练，显著省显存
+  packing: false

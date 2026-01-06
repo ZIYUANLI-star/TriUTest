@@ -1,0 +1,40 @@
+# 它决定了 on-policy 强化阶段如何采样、怎么打分、加哪些正则与蒸馏、以及训练步数/学习率等。并明确哪些字段当前代码里已生效、哪些未被用到
+policy_model: "runs/gkd-qwen3b" # 作为可训练策略模型加载（学生，接着 GKD 结果继续训练）。
+ref_model: "runs/gkd-qwen3b"     # 参考模型（冻结，eval 模式）。用于 KL 正则与在线 JSD（相当于“锚点/教师替身”）。
+output_dir: "runs/grpo-mutant" #
+rollout:
+  group_size: 8
+  temperature: 0.9
+  top_p: 0.95
+  max_new_tokens: 1024
+  gen_batch_size: 1
+  no_repeat_ngram_size: 3
+  repetition_penalty: 1.15
+reward:
+  weights:
+    mutant_kill: 1.0 # 主目标：变异体击杀率；比重最高。
+    speed: 0.1
+    stability: 0.2
+    robustness: 0.4
+  time_budget_s: 25
+  repeat_runs: 1
+  invariance_aug: true
+kl:
+  beta: 0.02
+gkd_online:
+  enable: true
+  jsd_alpha: 0.9
+  lambda: 0.2
+training:
+  device: "cuda:0"
+  use_4bit: true
+  steps: 1500
+  micro_batch_size: 1
+  grad_acc_steps: 8
+  lr: 1e-5
+  bf16: true
+debug:
+  print_candidates: false
+  print_rewards: false
+  dump_jsonl: false
+  print_every: 1

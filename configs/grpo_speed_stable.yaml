@@ -1,0 +1,30 @@
+policy_model: "runs/gkd-qwen3b"
+ref_model: "runs/gkd-qwen3b"
+output_dir: "runs/grpo-speed"
+rollout:
+  group_size: 4
+  temperature: 0.4
+  top_p: 0.8
+  max_new_tokens: 256
+  gen_batch_size: 1
+reward:
+  weights:
+    mutant_kill: 0.2
+    speed: 1.0
+    stability: 0.8
+    robustness: 0.5
+  time_budget_s: 8
+  repeat_runs: 2
+  invariance_aug: true
+kl:
+  beta: 0.02
+gkd_online:
+  enable: true
+  jsd_alpha: 0.9
+  lambda: 0.15
+training:
+  steps: 1500
+  micro_batch_size: 1
+  grad_acc_steps: 8
+  lr: 1e-5
+  bf16: true

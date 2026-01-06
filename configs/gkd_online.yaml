@@ -1,0 +1,36 @@
+base_model: "Qwen/Qwen2.5-3B-Instruct"   # 真正的基座
+teacher_model: "Qwen/Qwen2.5-14B-Instruct"
+teacher_8bit: false                       # 显存紧张可设 true
+
+data:
+  train_jsonl: "data/your_dataset_with_id.json"
+  max_length: 2048
+
+gkd:
+  use_jsd: true
+  jsd_alpha: 0.9
+  jsd_lambda: 0.5
+  use_rkl: true
+  rkl_lambda: 0.5
+  temperature: 2.0
+
+lora:
+  r: 64
+  alpha: 128
+  dropout: 0.05
+  target_modules: ["q_proj","k_proj","v_proj","o_proj","gate_proj","up_proj","down_proj"]
+
+training:
+  output_dir: "runs/gkd-qwen3b"
+  resume_adapter: "runs/sft-qwen3b"
+  batch_size: 2
+  grad_accum: 8
+  epochs: 1
+  lr: 1e-4
+  warmup_ratio: 0.03
+  logging_steps: 10
+  save_steps: 500
+  report_to: "none"
+  dtype: "bf16"
+  load_in_4bit: true
+  gradient_checkpointing: false
