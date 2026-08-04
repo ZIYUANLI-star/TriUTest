@@ -172,8 +172,8 @@ class DQGKDTrainer(Trainer):
                     pt = torch.log_softmax(t_sel, dim=-1)
                     pt_exp = torch.exp(pt)
                 ps = torch.log_softmax(s_sel, dim=-1)
-            fkl_c = (pt_exp * (pt - ps)).sum(-1).mean()
-            kd_terms.append(w * fkl_c)
+                fkl_c = (pt_exp * (pt - ps)).sum(-1).mean()
+                kd_terms.append(w * fkl_c)
                 del s_sel, t_sel, ps, pt, pt_exp
 
             # diversity surrogate: raise likelihood of structurally distinct
