@@ -1,0 +1,41 @@
+base_model: "Qwen/Qwen2.5-3B-Instruct"
+teacher_model: "Qwen/Qwen2.5-14B-Instruct"
+teacher_8bit: false
+teacher_4bit: false   # bf16 teacher: ~3x faster forward, fits in 80GB
+
+data:
+  train_jsonl: "data/gkd_train_10k.json"
+  candidates_file: "data/gkd_candidates.jsonl"   # on-policy candidates + quality weights
+  max_length: 2048
+
+gkd:
+  kd_lambda: 0.5      # lambda_kd: quality-weighted masked reverse-KL
+  div_lambda: 0.1     # lambda_div: diversity surrogate
+  max_cands: 2
+  temperature: 2.0
+  use_jsd: true
+  jsd_alpha: 0.9
+  jsd_lambda: 0.5
+  use_rkl: true
+  rkl_lambda: 0.5
+
+lora:
+  r: 64
+  alpha: 128
+  dropout: 0.05
+  target_modules: ["q_proj","k_proj","v_proj","o_proj","gate_proj","up_proj","down_proj"]
+
+training:
+  output_dir: "runs/gkd-3b-14b"
+  resume_adapter: "runs/sft-3b"
+  batch_size: 2
+  grad_accum: 8
+  epochs: 1
+  lr: 1e-4
+  warmup_ratio: 0.03
+  logging_steps: 20
+  save_steps: 150
+  report_to: "none"
+  dtype: "bf16"
+  load_in_4bit: true
+  gradient_checkpointing: true

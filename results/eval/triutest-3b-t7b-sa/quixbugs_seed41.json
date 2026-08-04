@@ -1,0 +1,415 @@
+{
+ "method": "triutest-3b-t7b-sa",
+ "subject": "quixbugs",
+ "seed": 41,
+ "gen_wall_s": 120.12,
+ "gen_tokens": 384000,
+ "per_uut": [
+  {
+   "uut_id": "quixbugs_bitcount",
+   "n_cands": 15,
+   "n_exec": 0,
+   "stmt": 0.0,
+   "branch": 0.0,
+   "exposed": true,
+   "exec_wall_s": 1384.956310749054,
+   "n_pytest_runs": 21
+  },
+  {
+   "uut_id": "quixbugs_breadth_first_search",
+   "n_cands": 15,
+   "n_exec": 0,
+   "stmt": 84.61538461538461,
+   "branch": 50.0,
+   "exposed": false,
+   "exec_wall_s": 16.69686222076416,
+   "n_pytest_runs": 31
+  },
+  {
+   "uut_id": "quixbugs_bucketsort",
+   "n_cands": 15,
+   "n_exec": 8,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 13.13552737236023,
+   "n_pytest_runs": 23
+  },
+  {
+   "uut_id": "quixbugs_depth_first_search",
+   "n_cands": 15,
+   "n_exec": 0,
+   "stmt": 80.0,
+   "branch": 50.0,
+   "exposed": false,
+   "exec_wall_s": 16.75295639038086,
+   "n_pytest_runs": 31
+  },
+  {
+   "uut_id": "quixbugs_detect_cycle",
+   "n_cands": 15,
+   "n_exec": 0,
+   "stmt": 50.0,
+   "branch": 0.0,
+   "exposed": true,
+   "exec_wall_s": 15.765043258666992,
+   "n_pytest_runs": 19
+  },
+  {
+   "uut_id": "quixbugs_find_first_in_sorted",
+   "n_cands": 15,
+   "n_exec": 9,
+   "stmt": 0.0,
+   "branch": 0.0,
+   "exposed": true,
+   "exec_wall_s": 1204.1463577747345,
+   "n_pytest_runs": 26
+  },
+  {
+   "uut_id": "quixbugs_find_in_sorted",
+   "n_cands": 15,
+   "n_exec": 15,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 21.702631950378418,
+   "n_pytest_runs": 32
+  },
+  {
+   "uut_id": "quixbugs_flatten",
+   "n_cands": 15,
+   "n_exec": 2,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 13.973897695541382,
+   "n_pytest_runs": 21
+  },
+  {
+   "uut_id": "quixbugs_gcd",
+   "n_cands": 15,
+   "n_exec": 1,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 14.162597179412842,
+   "n_pytest_runs": 18
+  },
+  {
+   "uut_id": "quixbugs_get_factors",
+   "n_cands": 15,
+   "n_exec": 15,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 15.71693205833435,
+   "n_pytest_runs": 32
+  },
+  {
+   "uut_id": "quixbugs_hanoi",
+   "n_cands": 15,
+   "n_exec": 0,
+   "stmt": 0.0,
+   "branch": 0.0,
+   "exposed": false,
+   "exec_wall_s": 0.0,
+   "n_pytest_runs": 0
+  },
+  {
+   "uut_id": "quixbugs_is_valid_parenthesization",
+   "n_cands": 15,
+   "n_exec": 15,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": false,
+   "exec_wall_s": 11.553682088851929,
+   "n_pytest_runs": 16
+  },
+  {
+   "uut_id": "quixbugs_kheapsort",
+   "n_cands": 15,
+   "n_exec": 0,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": false,
+   "exec_wall_s": 14.666409015655518,
+   "n_pytest_runs": 27
+  },
+  {
+   "uut_id": "quixbugs_knapsack",
+   "n_cands": 15,
+   "n_exec": 15,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 16.8825945854187,
+   "n_pytest_runs": 30
+  },
+  {
+   "uut_id": "quixbugs_kth",
+   "n_cands": 15,
+   "n_exec": 4,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 17.74718713760376,
+   "n_pytest_runs": 30
+  },
+  {
+   "uut_id": "quixbugs_lcs_length",
+   "n_cands": 15,
+   "n_exec": 0,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 12.954742908477783,
+   "n_pytest_runs": 19
+  },
+  {
+   "uut_id": "quixbugs_levenshtein",
+   "n_cands": 15,
+   "n_exec": 0,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 12.04203462600708,
+   "n_pytest_runs": 18
+  },
+  {
+   "uut_id": "quixbugs_lis",
+   "n_cands": 15,
+   "n_exec": 15,
+   "stmt": 100.0,
+   "branch": 75.0,
+   "exposed": true,
+   "exec_wall_s": 17.428326845169067,
+   "n_pytest_runs": 32
+  },
+  {
+   "uut_id": "quixbugs_longest_common_subsequence",
+   "n_cands": 15,
+   "n_exec": 13,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": false,
+   "exec_wall_s": 15.41319990158081,
+   "n_pytest_runs": 24
+  },
+  {
+   "uut_id": "quixbugs_max_sublist_sum",
+   "n_cands": 15,
+   "n_exec": 15,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 17.596402406692505,
+   "n_pytest_runs": 32
+  },
+  {
+   "uut_id": "quixbugs_mergesort",
+   "n_cands": 15,
+   "n_exec": 11,
+   "stmt": 40.0,
+   "branch": 33.333333333333336,
+   "exposed": true,
+   "exec_wall_s": 34.61286187171936,
+   "n_pytest_runs": 23
+  },
+  {
+   "uut_id": "quixbugs_minimum_spanning_tree",
+   "n_cands": 15,
+   "n_exec": 5,
+   "stmt": 100.0,
+   "branch": 66.66666666666667,
+   "exposed": true,
+   "exec_wall_s": 4.998210906982422,
+   "n_pytest_runs": 8
+  },
+  {
+   "uut_id": "quixbugs_next_palindrome",
+   "n_cands": 15,
+   "n_exec": 2,
+   "stmt": 93.33333333333333,
+   "branch": 83.33333333333333,
+   "exposed": false,
+   "exec_wall_s": 3.558065176010132,
+   "n_pytest_runs": 5
+  },
+  {
+   "uut_id": "quixbugs_next_permutation",
+   "n_cands": 15,
+   "n_exec": 0,
+   "stmt": 100.0,
+   "branch": 75.0,
+   "exposed": true,
+   "exec_wall_s": 7.480164289474487,
+   "n_pytest_runs": 10
+  },
+  {
+   "uut_id": "quixbugs_pascal",
+   "n_cands": 15,
+   "n_exec": 12,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 17.332223415374756,
+   "n_pytest_runs": 32
+  },
+  {
+   "uut_id": "quixbugs_possible_change",
+   "n_cands": 15,
+   "n_exec": 13,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 29.734495401382446,
+   "n_pytest_runs": 30
+  },
+  {
+   "uut_id": "quixbugs_powerset",
+   "n_cands": 15,
+   "n_exec": 11,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 17.370221376419067,
+   "n_pytest_runs": 32
+  },
+  {
+   "uut_id": "quixbugs_quicksort",
+   "n_cands": 15,
+   "n_exec": 13,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": false,
+   "exec_wall_s": 12.448493480682373,
+   "n_pytest_runs": 20
+  },
+  {
+   "uut_id": "quixbugs_reverse_linked_list",
+   "n_cands": 15,
+   "n_exec": 3,
+   "stmt": 75.0,
+   "branch": 100.0,
+   "exposed": false,
+   "exec_wall_s": 17.153919458389282,
+   "n_pytest_runs": 30
+  },
+  {
+   "uut_id": "quixbugs_rpn_eval",
+   "n_cands": 15,
+   "n_exec": 8,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 16.8386652469635,
+   "n_pytest_runs": 25
+  },
+  {
+   "uut_id": "quixbugs_shortest_path_length",
+   "n_cands": 15,
+   "n_exec": 4,
+   "stmt": 46.666666666666664,
+   "branch": 18.75,
+   "exposed": false,
+   "exec_wall_s": 8.583995580673218,
+   "n_pytest_runs": 13
+  },
+  {
+   "uut_id": "quixbugs_shortest_path_lengths",
+   "n_cands": 15,
+   "n_exec": 1,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": false,
+   "exec_wall_s": 15.947217464447021,
+   "n_pytest_runs": 28
+  },
+  {
+   "uut_id": "quixbugs_shortest_paths",
+   "n_cands": 15,
+   "n_exec": 0,
+   "stmt": 0.0,
+   "branch": 0.0,
+   "exposed": false,
+   "exec_wall_s": 0.0,
+   "n_pytest_runs": 0
+  },
+  {
+   "uut_id": "quixbugs_shunting_yard",
+   "n_cands": 15,
+   "n_exec": 0,
+   "stmt": 84.61538461538461,
+   "branch": 75.0,
+   "exposed": true,
+   "exec_wall_s": 10.378452062606812,
+   "n_pytest_runs": 17
+  },
+  {
+   "uut_id": "quixbugs_sieve",
+   "n_cands": 15,
+   "n_exec": 14,
+   "stmt": 85.71428571428571,
+   "branch": 75.0,
+   "exposed": true,
+   "exec_wall_s": 15.187806606292725,
+   "n_pytest_runs": 27
+  },
+  {
+   "uut_id": "quixbugs_sqrt",
+   "n_cands": 15,
+   "n_exec": 0,
+   "stmt": 0.0,
+   "branch": 0.0,
+   "exposed": false,
+   "exec_wall_s": 1715.9567012786865,
+   "n_pytest_runs": 31
+  },
+  {
+   "uut_id": "quixbugs_subsequences",
+   "n_cands": 15,
+   "n_exec": 10,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 8.799864768981934,
+   "n_pytest_runs": 15
+  },
+  {
+   "uut_id": "quixbugs_to_base",
+   "n_cands": 15,
+   "n_exec": 6,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 9.732220649719238,
+   "n_pytest_runs": 16
+  },
+  {
+   "uut_id": "quixbugs_topological_ordering",
+   "n_cands": 15,
+   "n_exec": 0,
+   "stmt": 62.5,
+   "branch": 16.666666666666668,
+   "exposed": false,
+   "exec_wall_s": 17.241443395614624,
+   "n_pytest_runs": 31
+  },
+  {
+   "uut_id": "quixbugs_wrap",
+   "n_cands": 15,
+   "n_exec": 11,
+   "stmt": 100.0,
+   "branch": 100.0,
+   "exposed": true,
+   "exec_wall_s": 133.61560678482056,
+   "n_pytest_runs": 22
+  }
+ ],
+ "stmt": 80.06112637362637,
+ "branch": 72.96875,
+ "exec_wall_s": 4950.264325380325,
+ "n_pytest_runs": 897,
+ "exec_rate": 0.41833333333333333,
+ "ftr": 65.0
+}

@@ -1,0 +1,156 @@
+{
+ "method": "triutest-3b",
+ "subject": "apimd",
+ "seed": 40,
+ "gen_wall_s": 94.74000000000001,
+ "gen_tokens": 192000,
+ "n_cands": 300,
+ "n_exec": 106,
+ "exec_wall_s": 125.00371384620667,
+ "n_pytest_runs": 333,
+ "stmt": 63.60424028268551,
+ "branch": 42.5,
+ "per_uut": [
+  {
+   "uut_id": "apimd_apimd___main___main",
+   "n_cands": 15,
+   "n_exec": 0,
+   "exec_wall_s": 5.431145906448364,
+   "n_pytest_runs": 15
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_StandardModule",
+   "n_cands": 15,
+   "n_exec": 8,
+   "exec_wall_s": 4.324371814727783,
+   "n_pytest_runs": 22
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_get_name",
+   "n_cands": 15,
+   "n_exec": 4,
+   "exec_wall_s": 3.8075168132781982,
+   "n_pytest_runs": 19
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_public",
+   "n_cands": 15,
+   "n_exec": 1,
+   "exec_wall_s": 3.6257336139678955,
+   "n_pytest_runs": 16
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_docstring",
+   "n_cands": 15,
+   "n_exec": 2,
+   "exec_wall_s": 3.5035221576690674,
+   "n_pytest_runs": 17
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_table_row",
+   "n_cands": 15,
+   "n_exec": 0,
+   "exec_wall_s": 3.0828144550323486,
+   "n_pytest_runs": 15
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_make_table",
+   "n_cands": 15,
+   "n_exec": 0,
+   "exec_wall_s": 3.5237457752227783,
+   "n_pytest_runs": 15
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_is_abstractmethod",
+   "n_cands": 15,
+   "n_exec": 6,
+   "exec_wall_s": 3.4423320293426514,
+   "n_pytest_runs": 16
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_is_staticmethod",
+   "n_cands": 15,
+   "n_exec": 1,
+   "exec_wall_s": 3.4875996112823486,
+   "n_pytest_runs": 16
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_linker",
+   "n_cands": 15,
+   "n_exec": 15,
+   "exec_wall_s": 4.683095216751099,
+   "n_pytest_runs": 23
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_switch_types",
+   "n_cands": 15,
+   "n_exec": 0,
+   "exec_wall_s": 5.939640760421753,
+   "n_pytest_runs": 15
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_replace_keywords",
+   "n_cands": 15,
+   "n_exec": 15,
+   "exec_wall_s": 4.4235029220581055,
+   "n_pytest_runs": 22
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_import_from",
+   "n_cands": 15,
+   "n_exec": 1,
+   "exec_wall_s": 4.353404760360718,
+   "n_pytest_runs": 16
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_load_file",
+   "n_cands": 15,
+   "n_exec": 0,
+   "exec_wall_s": 5.124687194824219,
+   "n_pytest_runs": 13
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_load_stubs",
+   "n_cands": 15,
+   "n_exec": 0,
+   "exec_wall_s": 3.5006022453308105,
+   "n_pytest_runs": 15
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_get_level",
+   "n_cands": 15,
+   "n_exec": 15,
+   "exec_wall_s": 3.432090997695923,
+   "n_pytest_runs": 16
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_load_root",
+   "n_cands": 15,
+   "n_exec": 0,
+   "exec_wall_s": 0.5060672760009766,
+   "n_pytest_runs": 2
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_basename",
+   "n_cands": 15,
+   "n_exec": 15,
+   "exec_wall_s": 3.191307544708252,
+   "n_pytest_runs": 15
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_ref_link",
+   "n_cands": 15,
+   "n_exec": 15,
+   "exec_wall_s": 4.384889125823975,
+   "n_pytest_runs": 21
+  },
+  {
+   "uut_id": "apimd_apimd_compiler_gen_api",
+   "n_cands": 15,
+   "n_exec": 8,
+   "exec_wall_s": 7.308078289031982,
+   "n_pytest_runs": 23
+  }
+ ],
+ "exec_rate": 0.35333333333333333
+}

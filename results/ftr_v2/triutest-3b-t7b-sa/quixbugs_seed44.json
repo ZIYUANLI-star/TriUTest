@@ -1,0 +1,249 @@
+{
+ "method": "triutest-3b-t7b-sa",
+ "seed": 44,
+ "ftr": 67.5,
+ "n_programs": 40,
+ "per_program": [
+  {
+   "uut_id": "quixbugs_bitcount",
+   "exposed": true,
+   "n_checked": 4,
+   "expose_via": "test_g3.py:file"
+  },
+  {
+   "uut_id": "quixbugs_breadth_first_search",
+   "exposed": false,
+   "n_checked": 15,
+   "expose_via": null
+  },
+  {
+   "uut_id": "quixbugs_bucketsort",
+   "exposed": true,
+   "n_checked": 10,
+   "expose_via": "test_g11.py:test_a1"
+  },
+  {
+   "uut_id": "quixbugs_depth_first_search",
+   "exposed": false,
+   "n_checked": 15,
+   "expose_via": null
+  },
+  {
+   "uut_id": "quixbugs_detect_cycle",
+   "exposed": true,
+   "n_checked": 4,
+   "expose_via": "test_g3.py:test_a0"
+  },
+  {
+   "uut_id": "quixbugs_find_first_in_sorted",
+   "exposed": true,
+   "n_checked": 1,
+   "expose_via": "test_g0.py:file"
+  },
+  {
+   "uut_id": "quixbugs_find_in_sorted",
+   "exposed": true,
+   "n_checked": 1,
+   "expose_via": "test_g0.py:file"
+  },
+  {
+   "uut_id": "quixbugs_flatten",
+   "exposed": true,
+   "n_checked": 10,
+   "expose_via": "test_g10.py:file"
+  },
+  {
+   "uut_id": "quixbugs_gcd",
+   "exposed": true,
+   "n_checked": 1,
+   "expose_via": "test_g0.py:test_a0"
+  },
+  {
+   "uut_id": "quixbugs_get_factors",
+   "exposed": true,
+   "n_checked": 1,
+   "expose_via": "test_g0.py:file"
+  },
+  {
+   "uut_id": "quixbugs_hanoi",
+   "exposed": true,
+   "n_checked": 1,
+   "expose_via": "test_g13.py:file"
+  },
+  {
+   "uut_id": "quixbugs_is_valid_parenthesization",
+   "exposed": false,
+   "n_checked": 15,
+   "expose_via": null
+  },
+  {
+   "uut_id": "quixbugs_kheapsort",
+   "exposed": false,
+   "n_checked": 14,
+   "expose_via": null
+  },
+  {
+   "uut_id": "quixbugs_knapsack",
+   "exposed": true,
+   "n_checked": 9,
+   "expose_via": "test_g8.py:test_a3"
+  },
+  {
+   "uut_id": "quixbugs_kth",
+   "exposed": true,
+   "n_checked": 9,
+   "expose_via": "test_g8.py:test_a4"
+  },
+  {
+   "uut_id": "quixbugs_lcs_length",
+   "exposed": true,
+   "n_checked": 1,
+   "expose_via": "test_g0.py:file"
+  },
+  {
+   "uut_id": "quixbugs_levenshtein",
+   "exposed": true,
+   "n_checked": 1,
+   "expose_via": "test_g0.py:file"
+  },
+  {
+   "uut_id": "quixbugs_lis",
+   "exposed": true,
+   "n_checked": 1,
+   "expose_via": "test_g0.py:file"
+  },
+  {
+   "uut_id": "quixbugs_longest_common_subsequence",
+   "exposed": false,
+   "n_checked": 8,
+   "expose_via": null
+  },
+  {
+   "uut_id": "quixbugs_max_sublist_sum",
+   "exposed": true,
+   "n_checked": 1,
+   "expose_via": "test_g0.py:test_a0"
+  },
+  {
+   "uut_id": "quixbugs_mergesort",
+   "exposed": true,
+   "n_checked": 1,
+   "expose_via": "test_g10.py:file"
+  },
+  {
+   "uut_id": "quixbugs_minimum_spanning_tree",
+   "exposed": false,
+   "n_checked": 4,
+   "expose_via": null
+  },
+  {
+   "uut_id": "quixbugs_next_palindrome",
+   "exposed": false,
+   "n_checked": 3,
+   "expose_via": null
+  },
+  {
+   "uut_id": "quixbugs_next_permutation",
+   "exposed": true,
+   "n_checked": 6,
+   "expose_via": "test_g9.py:file"
+  },
+  {
+   "uut_id": "quixbugs_pascal",
+   "exposed": true,
+   "n_checked": 3,
+   "expose_via": "test_g2.py:file"
+  },
+  {
+   "uut_id": "quixbugs_possible_change",
+   "exposed": true,
+   "n_checked": 1,
+   "expose_via": "test_g0.py:test_a0"
+  },
+  {
+   "uut_id": "quixbugs_powerset",
+   "exposed": true,
+   "n_checked": 7,
+   "expose_via": "test_g6.py:file"
+  },
+  {
+   "uut_id": "quixbugs_quicksort",
+   "exposed": false,
+   "n_checked": 12,
+   "expose_via": null
+  },
+  {
+   "uut_id": "quixbugs_reverse_linked_list",
+   "exposed": false,
+   "n_checked": 15,
+   "expose_via": null
+  },
+  {
+   "uut_id": "quixbugs_rpn_eval",
+   "exposed": true,
+   "n_checked": 1,
+   "expose_via": "test_g0.py:file"
+  },
+  {
+   "uut_id": "quixbugs_shortest_path_length",
+   "exposed": false,
+   "n_checked": 7,
+   "expose_via": null
+  },
+  {
+   "uut_id": "quixbugs_shortest_path_lengths",
+   "exposed": false,
+   "n_checked": 13,
+   "expose_via": null
+  },
+  {
+   "uut_id": "quixbugs_shortest_paths",
+   "exposed": false,
+   "n_checked": 0,
+   "expose_via": null
+  },
+  {
+   "uut_id": "quixbugs_shunting_yard",
+   "exposed": true,
+   "n_checked": 1,
+   "expose_via": "test_g0.py:file"
+  },
+  {
+   "uut_id": "quixbugs_sieve",
+   "exposed": true,
+   "n_checked": 2,
+   "expose_via": "test_g2.py:file"
+  },
+  {
+   "uut_id": "quixbugs_sqrt",
+   "exposed": true,
+   "n_checked": 9,
+   "expose_via": "test_g8.py:test_a0"
+  },
+  {
+   "uut_id": "quixbugs_subsequences",
+   "exposed": true,
+   "n_checked": 4,
+   "expose_via": "test_g13.py:test_a2"
+  },
+  {
+   "uut_id": "quixbugs_to_base",
+   "exposed": true,
+   "n_checked": 1,
+   "expose_via": "test_g7.py:file"
+  },
+  {
+   "uut_id": "quixbugs_topological_ordering",
+   "exposed": false,
+   "n_checked": 15,
+   "expose_via": null
+  },
+  {
+   "uut_id": "quixbugs_wrap",
+   "exposed": true,
+   "n_checked": 2,
+   "expose_via": "test_g1.py:test_a1"
+  }
+ ],
+ "elapsed_s": 336.1
+}

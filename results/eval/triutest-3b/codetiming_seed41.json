@@ -1,0 +1,37 @@
+{
+ "method": "triutest-3b",
+ "subject": "codetiming",
+ "seed": 41,
+ "gen_wall_s": 29.961,
+ "gen_tokens": 28800,
+ "n_cands": 45,
+ "n_exec": 12,
+ "exec_wall_s": 13.51200819015503,
+ "n_pytest_runs": 48,
+ "stmt": 87.5,
+ "branch": 45.0,
+ "per_uut": [
+  {
+   "uut_id": "codetiming_codetiming__timer_TimerError",
+   "n_cands": 15,
+   "n_exec": 3,
+   "exec_wall_s": 3.689655065536499,
+   "n_pytest_runs": 18
+  },
+  {
+   "uut_id": "codetiming_codetiming__timer_Timer",
+   "n_cands": 15,
+   "n_exec": 5,
+   "exec_wall_s": 4.049368143081665,
+   "n_pytest_runs": 19
+  },
+  {
+   "uut_id": "codetiming_codetiming__timers_Timers",
+   "n_cands": 15,
+   "n_exec": 4,
+   "exec_wall_s": 2.3113667964935303,
+   "n_pytest_runs": 10
+  }
+ ],
+ "exec_rate": 0.26666666666666666
+}

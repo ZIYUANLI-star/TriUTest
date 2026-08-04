@@ -1,0 +1,58 @@
+{
+ "method": "triutest-3b-sa",
+ "subject": "apimd",
+ "seed": 41,
+ "python": "3.9.25",
+ "targets": {
+  "apimd.__main__": {
+   "killed": [],
+   "total": 0,
+   "wall_s": 0.0,
+   "skipped": "no_tests"
+  },
+  "apimd.compiler": {
+   "killed": [
+    "AOR_80_4",
+    "AOR_80_5",
+    "AOR_80_6",
+    "AOR_80_7",
+    "AOR_80_8",
+    "AOR_80_9",
+    "AOR_87_10",
+    "AOR_87_11",
+    "AOR_87_12",
+    "AOR_87_13",
+    "AOR_87_14",
+    "AOR_134_19",
+    "ASR_88_40",
+    "ASR_90_41",
+    "COD_41_63",
+    "COD_60_64",
+    "COI_40_70",
+    "COI_41_71",
+    "COI_48_73",
+    "COI_58_74",
+    "COI_60_75",
+    "COI_67_76",
+    "COI_70_77",
+    "COI_82_78",
+    "COI_104_80",
+    "COI_113_82",
+    "COI_120_83",
+    "COI_120_84",
+    "COI_126_85",
+    "COI_294_109",
+    "LCR_41_123",
+    "LCR_60_124",
+    "ROR_59_131",
+    "ROR_70_132",
+    "ROR_82_133",
+    "ROR_294_137"
+   ],
+   "total": 136,
+   "wall_s": 66.78
+  }
+ },
+ "mut_wall_s": 66.78,
+ "elapsed_s": 66.85
+}

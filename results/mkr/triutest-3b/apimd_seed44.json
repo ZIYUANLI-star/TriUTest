@@ -1,0 +1,29 @@
+{
+ "method": "triutest-3b",
+ "subject": "apimd",
+ "seed": 44,
+ "python": "3.9.25",
+ "targets": {
+  "apimd.__main__": {
+   "killed": [],
+   "total": 0,
+   "wall_s": 0.0,
+   "skipped": "no_tests"
+  },
+  "apimd.compiler": {
+   "killed": [
+    "COD_333_69",
+    "COI_40_70",
+    "COI_48_73",
+    "COI_67_76",
+    "COI_294_109",
+    "COI_333_114",
+    "ROR_294_137"
+   ],
+   "total": 136,
+   "wall_s": 143.15
+  }
+ },
+ "mut_wall_s": 143.15,
+ "elapsed_s": 143.21
+}

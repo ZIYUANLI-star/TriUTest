@@ -1,0 +1,50 @@
+policy_model: "runs/gkd-3b-14b"
+ref_model: "runs/gkd-3b-14b"
+output_dir: "runs/triutest-3b-sa"
+seed: 42
+
+rollout:
+  group_size: 6
+  temperature: 0.7
+  top_p: 0.92
+  max_new_tokens: 768
+  gen_batch_size: 1
+
+reward:
+  stateful: true
+  p_perturb: 0.3   # spec-anchored prompt perturbation (FTR fix)          # SM-GRPO: stateful marginal mutant-kill reward
+  weights:
+    mutant_kill: 1.5
+    speed: 0.1
+    stability: 0.2
+    robustness: 0.3
+    assertion: 0.1
+    _mutant_gamma: 1.7
+    _max_mutants: 16
+    _penalty_syntax: -1.0
+    _penalty_baseline: -0.5
+  time_budget_s: 25
+  repeat_runs: 2
+  invariance_aug: true
+
+kl:
+  alpha: 0.005   # KL(pi||ref)
+  beta: 0.02    # KL(ref||pi), symmetric (paper Eq. 15)
+
+gkd_online:
+  enable: false
+
+training:
+  device: "cuda:0"
+  use_4bit: true
+  steps: 300
+  micro_batch_size: 2
+  grad_acc_steps: 8
+  lr: 1e-5
+  bf16: true
+
+debug:
+  print_candidates: false
+  print_rewards: false
+  dump_jsonl: true
+  print_every: 1

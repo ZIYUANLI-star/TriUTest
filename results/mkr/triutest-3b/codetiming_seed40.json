@@ -1,0 +1,32 @@
+{
+ "method": "triutest-3b",
+ "subject": "codetiming",
+ "seed": 40,
+ "python": "3.9.25",
+ "targets": {
+  "codetiming._timer": {
+   "killed": [
+    "COI_36_7"
+   ],
+   "total": 15,
+   "wall_s": 2.91
+  },
+  "codetiming._timers": {
+   "killed": [
+    "COI_44_3",
+    "COI_44_4",
+    "COI_74_5",
+    "COI_74_6",
+    "LCR_58_7",
+    "LCR_62_8",
+    "LCR_66_9",
+    "LCR_70_10",
+    "ROR_76_12"
+   ],
+   "total": 12,
+   "wall_s": 2.3
+  }
+ },
+ "mut_wall_s": 5.21,
+ "elapsed_s": 2.97
+}

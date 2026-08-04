@@ -1,0 +1,15 @@
+# Training / generation environment (Python 3.10+)
+torch>=2.1
+transformers>=4.40
+peft>=0.10
+datasets>=2.18
+accelerate>=0.28
+bitsandbytes>=0.43
+vllm>=0.4
+pyyaml
+numpy
+pytest
+coverage
+
+# Mutation testing (separate Python 3.9 environment)
+# mutpy==0.6.1
