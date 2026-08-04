@@ -1,17 +1,20 @@
 """DQ-GKD training (paper Sec. 3.2, Alg. 1).
 
-L = L_CE(gold) + lambda_kd * L_Q-RKL + lambda_div * L_div
+L = L_CE(gold) + lambda_kd * L_KD + lambda_div * L_div
   - L_CE(gold): keeps basic executability/structure.
-  - L_Q-RKL: quality-weighted reverse-KL distillation restricted to
-    test-sensitive spans of on-policy candidates (span mask via AST).
-  - L_div: differentiable surrogate of the structural diversity regularizer:
-    up-weights the likelihood of structurally distinct candidates (Jaccard
-    distinctness of AST feature sets) to counteract candidate collapse.
+  - L_KD: quality-weighted KL(teacher || student) distillation (teacher-to-
+    student forward KL; historically abbreviated "RKL" in identifiers here)
+    restricted to test-sensitive spans of student-sampled candidates
+    (span mask via AST).
+  - L_div: quality-weighted multi-candidate likelihood regularizer that
+    counteracts candidate collapse; Jaccard distinctness of AST feature sets
+    is computed as a diagnostic but does not enter the gradient.
 
-On-policy candidates are sampled from the student policy once per stage
-(exp/gen_gkd_candidates.py) and scored offline (exp/score_gkd_candidates.py),
-which keeps the teacher-forward budget tractable.
-If no candidate file is configured, falls back to uniform-token JSD/RKL.
+Candidates are sampled from the student policy once per stage
+(data_construction/gen_gkd_candidates.py) and scored offline
+(data_construction/score_gkd_candidates.py), which keeps the teacher-forward
+budget tractable; they are not refreshed afterwards (one-refresh scheme).
+If no candidate file is configured, falls back to uniform-token JSD + KL(T||S).
 """
 import argparse, json, os, torch
 from typing import Optional
@@ -70,7 +73,7 @@ def load_dq_dataset(train_file: str, candidates_file: Optional[str], max_cands: 
     return Dataset.from_list(rows)
 
 
-# ====== Distill Trainer (span-masked quality-weighted RKL + diversity) ======
+# ====== Distill Trainer (span-masked quality-weighted KL(T||S) + multi-candidate regularizer) ======
 class DQGKDTrainer(Trainer):
     def __init__(self, *args, teacher=None, gkd_cfg=None, **kwargs):
         super().__init__(*args, **kwargs)
@@ -81,6 +84,9 @@ class DQGKDTrainer(Trainer):
         self.temperature = float(g.get("temperature", 2.0))
         self.use_jsd = bool(g.get("use_jsd", True))
         self.jsd_lambda = float(g.get("jsd_lambda", 0.5))
+        # NOTE: the config key "rkl_lambda" is historical; the loss computed is
+        # KL(teacher || student), i.e. the forward KL of the paper. The key is
+        # kept unchanged so the released YAML configs match the paper's runs.
         self.rkl_lambda = float(g.get("rkl_lambda", 0.5))
 
     @staticmethod
@@ -92,7 +98,7 @@ class DQGKDTrainer(Trainer):
         return s_logits[..., :v], t_logits[..., :v]
 
     def _uniform_distill(self, shift_logits, mask, inputs, loss):
-        """Fallback: uniform-token JSD + RKL on gold sequence (legacy behaviour)."""
+        """Fallback: uniform-token JSD + KL(T||S) on gold sequence (legacy behaviour)."""
         with torch.no_grad():
             t_out = self.teacher(input_ids=inputs["input_ids"],
                                  attention_mask=inputs.get("attention_mask"))
@@ -107,9 +113,9 @@ class DQGKDTrainer(Trainer):
         pm = torch.log_softmax(m, dim=-1)
         jsd = 0.5 * (torch.exp(ps) * (ps - pm)).sum(-1) + 0.5 * (torch.exp(pt) * (pt - pm)).sum(-1)
         jsd = (jsd * mask).sum() / (mask.sum() + 1e-8)
-        rkl = (torch.exp(pt) * (pt - ps)).sum(-1)
-        rkl = (rkl * mask).sum() / (mask.sum() + 1e-8)
-        return loss + self.jsd_lambda * jsd + self.rkl_lambda * rkl
+        fkl = (torch.exp(pt) * (pt - ps)).sum(-1)
+        fkl = (fkl * mask).sum() / (mask.sum() + 1e-8)
+        return loss + self.jsd_lambda * jsd + self.rkl_lambda * fkl
 
     def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
         cand_ids = inputs.pop("cand_input_ids", None)
@@ -135,10 +141,10 @@ class DQGKDTrainer(Trainer):
             loss = self._uniform_distill(shift_logits, mask, inputs, loss)
             return (loss, outputs) if return_outputs else loss
 
-        # ---- quality-weighted masked reverse-KL on on-policy candidates ----
+        # ---- quality-weighted masked KL(T||S) on student-sampled candidates ----
         # Memory strategy: the autograd graph must not accumulate full-vocab
         # (L x 152k) softmax outputs per candidate. We (i) select the masked
-        # (test-sensitive) positions BEFORE the fp32 softmax for the RKL term,
+        # (test-sensitive) positions BEFORE the fp32 softmax for the KD term,
         # and (ii) compute the diversity chosen-logprob via cross_entropy so
         # that at most one full-vocab tensor per candidate lives in the graph.
         T = max(self.temperature, 1e-6)
@@ -166,8 +172,8 @@ class DQGKDTrainer(Trainer):
                     pt = torch.log_softmax(t_sel, dim=-1)
                     pt_exp = torch.exp(pt)
                 ps = torch.log_softmax(s_sel, dim=-1)
-                rkl_c = (pt_exp * (pt - ps)).sum(-1).mean()
-                kd_terms.append(w * rkl_c)
+            fkl_c = (pt_exp * (pt - ps)).sum(-1).mean()
+            kd_terms.append(w * fkl_c)
                 del s_sel, t_sel, ps, pt, pt_exp
 
             # diversity surrogate: raise likelihood of structurally distinct

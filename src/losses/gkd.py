@@ -27,20 +27,21 @@ def jsd_loss(student_logits, teacher_logits, alpha: float = 0.9, mask=None):
         jsd = jsd.mean()
     return jsd
 
-def reverse_kl_on_logits(student_logits, teacher_logits, mask=None):
+def forward_kl_on_logits(student_logits, teacher_logits, mask=None):
+    """KL(teacher || student): teacher-to-student forward KL as defined in the paper."""
     s_logprob = _log_softmax(student_logits)
     t_prob = _log_softmax(teacher_logits).exp()
-    rkl = (t_prob * (t_prob.log() - s_logprob)).sum(-1)  # KL(T||S)
+    fkl = (t_prob * (t_prob.log() - s_logprob)).sum(-1)  # KL(T||S)
     if mask is not None:
-        rkl = (rkl * mask).sum() / (mask.sum() + 1e-6)
+        fkl = (fkl * mask).sum() / (mask.sum() + 1e-6)
     else:
-        rkl = rkl.mean()
-    return rkl
+        fkl = fkl.mean()
+    return fkl
 
-def reverse_kl_on_chosen(student_logp_chosen, teacher_logp_chosen, mask=None):
+def forward_kl_on_chosen(student_logp_chosen, teacher_logp_chosen, mask=None):
     """
-    Approximate Reverse-KL when only chosen-token logprobs are available from teacher.
-    This is equivalent to cross-entropy on chosen token with teacher soft weight.
+    Approximate KL(T||S) when only chosen-token logprobs are available from the teacher.
+    This is equivalent to cross-entropy on the chosen token with teacher soft weight.
     """
     # negative log-likelihood difference
     r = -(teacher_logp_chosen - student_logp_chosen)  # encourage student to match teacher prob

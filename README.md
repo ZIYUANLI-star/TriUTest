@@ -49,8 +49,8 @@ Result directories follow the naming `triutest-<student>[-t7b][-sa]`, e.g. `triu
 
 ## Environment
 
-- Python 3.10+ (training and coverage/FTR evaluation); a separate Python 3.9 environment is required for MutPy-based mutation testing (`run_mkr.py`).
-- CUDA GPU with bf16 support (experiments used a single A100-class GPU with 4-bit quantized teacher loading).
+- Dual evaluation environment as in the paper: coverage/FTR measurement and original-program test execution run under **Python 3.13**; a separate **Python 3.9** environment is required for MutPy-based mutation testing (`run_mkr.py`). The training code itself is compatible with Python 3.9+.
+- CUDA GPU with bf16 support (the paper's experiments used a single NVIDIA A800 80GB GPU). In the main 3B x 14B configuration the teacher is loaded **frozen in bf16** (`teacher_4bit: false` in `configs/gkd_3b_14b.yaml`); the student uses LoRA on a 4-bit quantized base with bf16 compute, as specified in Table 5 of the paper.
 - Base models: Qwen2.5-Instruct family (1.5B/3B/7B/14B).
 
 ```bash
@@ -89,4 +89,5 @@ Each script prints its full argument list with `--help`.
 ## Notes
 
 - Rewards are computed on prepared candidates (AST cleaning, longest parseable prefix, per-assertion salvage); see `src/augment/robust_code.py` and `src/reward/stateful.py`.
-- Mutation testing uses MutPy, which requires Python 3.9; coverage and FTR run on Python 3.10+. The paper reports a cross-interpreter consistency check for this dual-environment setup.
+- Mutation testing uses MutPy 0.6.1, which requires Python 3.9; coverage and FTR run on Python 3.13 as in the paper. The paper reports a cross-interpreter consistency check for this dual-environment setup.
+- Naming note: for historical reasons, some identifiers in the code (e.g. the `rkl_lambda` config key) use "RKL"; the quantity actually computed is `KL(teacher || student)`, i.e. the teacher-to-student forward KL as defined in the paper. Config keys are kept unchanged so that the released YAML files remain byte-identical to those used for the paper's experiments.

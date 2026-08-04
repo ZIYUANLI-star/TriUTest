@@ -1,4 +1,4 @@
-# Training / generation environment (Python 3.10+)
+# Training / generation environment (evaluation used Python 3.13; training code is compatible with Python 3.9+)
 torch>=2.1
 transformers>=4.40
 peft>=0.10
@@ -11,5 +11,6 @@ numpy
 pytest
 coverage
 
-# Mutation testing (separate Python 3.9 environment)
-# mutpy==0.6.1
+# Mutation testing: install in a separate Python 3.9 environment
+# (pip install mutpy==0.6.1 in that environment; MutPy is incompatible with Python >= 3.10)
+mutpy==0.6.1; python_version < "3.10"
